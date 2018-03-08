@@ -44,6 +44,8 @@ source 'https://rubygems.org'
    gem 'listen', '~> 3.0.5'
  end
 
+ gem 'figaro', '1.0'
+
  gem 'devise'
 
  gem 'bootstrap-sass'
