@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
-  get 'home/index'
+  
+  resources :wikis 
 
+  get 'home/index'
+  
   root 'home#index'
 end

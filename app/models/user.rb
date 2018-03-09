@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :wikis, dependent: :destroy 
   attr_accessor :login 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
