@@ -1,6 +1,6 @@
 class WikisController < ApplicationController 
   before_action :authenticate_user!
-
+  
   def index
     @wikis = Wiki.all
   end
@@ -15,6 +15,7 @@ class WikisController < ApplicationController
 
   def create
     @wiki = Wiki.new(wiki_params)
+    authorize @wiki
     @wiki.user = current_user
 
     if @wiki.save
@@ -32,7 +33,9 @@ class WikisController < ApplicationController
 
   def update
     @wiki = Wiki.find(params[:id])
+    authorize @wiki
     @wiki.assign_attributes(wiki_params)
+    
 
     if @wiki.save
       flash[:notice] = 'Post was updated.'
@@ -45,14 +48,10 @@ end
 
   def destroy
     @wiki = Wiki.find(params[:id])
-
-    if @wiki.destroy
-      flash[:notice] = "\'#{@wiki.title}\' was deleted successfully."
-      redirect_to :wikis
-    else
-      flash.now[:alert] = 'There was an error deleting the post.'
-      render self
-    end
+    authorize @wiki
+    @wiki.destroy
+    flash[:notice] = "\'#{@wiki.title}\' was deleted successfully."
+    redirect_to :wikis
   end
 
   private

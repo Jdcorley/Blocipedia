@@ -1,4 +1,4 @@
-class ApplicationPolicy
+class ApplicationPolicy 
   attr_reader :user, :record
 
   def initialize(user, record)
@@ -15,23 +15,23 @@ class ApplicationPolicy
   end
 
   def create?
-    false
+    user.standard?
   end
 
   def new?
-    create?
+    user.standard?
   end
 
   def update?
-    user.present?
+    user.standard?
   end
 
   def edit?
-    update?
+    user.standard?
   end
 
   def destroy?
-    false
+    user.admin?
   end
 
   def scope
