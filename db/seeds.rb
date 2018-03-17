@@ -5,20 +5,23 @@ require 'faker'
     username: Faker::Name.unique.name,
     email: Faker::Internet.unique.email,
     password: 'helloworld',
-    role: 'standard'
+    role: 'standard',
+    confirmed_at: Time.now
   )
 end
 User.create!(
   username: 'admin',
   email: 'admin@admin.com',
   password: 'helloworld',
-  role: 'admin'
+  role: 'admin',
+  confirmed_at: Time.now
 )
 User.create!(
   username: 'Jack',
   email: 'jack@standard.com',
   password: 'helloworld',
-  role: 'standard'
+  role: 'standard',
+  confirmed_at: Time.now
 )
 users = User.all
 
