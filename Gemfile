@@ -53,3 +53,7 @@ source 'https://rubygems.org'
  gem 'pundit'
 
  gem 'faker'
+
+ gem 'stripe'
+
+ gem 'dotenv-rails', :groups => [:development, :test] 
