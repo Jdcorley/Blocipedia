@@ -14,6 +14,9 @@ class ChargesController < ApplicationController
     charge = StripeTool.create_charge(customer_id: customer.id, 
                                       amount: @amount, 
                                       description: @description)
+      current_user.role = 'premium'
+      current_user.save!
+      puts current_user[:role]
       redirect_to thanks_path 
   rescue Stripe::CardError => e
     flash[:error] = e.message
@@ -27,6 +30,6 @@ class ChargesController < ApplicationController
   end
 
   def amount_to_be_charged 
-    @amount = 500
+    @amount = 1500
   end 
 end
