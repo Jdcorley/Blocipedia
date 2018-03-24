@@ -5,9 +5,18 @@
         <p><%= flash[:error] %></p>
       </div>
     <% end %>
-    <label class="amount">
-      <span>Amount: <%= pretty_amount(@amount) %></span>
-    </label>
+    <h1>Would you like to upgrade to a premium account?</h1>
+    <div class="row">
+  <div class="col-md-4">
+    <p>Premium members recieve the following benefits for a small fee of  <label class="amount">
+      <span> <%= pretty_amount(@amount) %></span>
+    </label>:</p>
+    <ul>
+      <li>You will be able to create private wikis.</li>
+      <li>Private wikis will be hidden from the public.</li>
+      <li>We take our premium members' information seriously to protect your wikis from standard users.</li>
+    </ul>
+  </div>
   </article>
 
   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
