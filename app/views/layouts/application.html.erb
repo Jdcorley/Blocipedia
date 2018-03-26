@@ -22,7 +22,9 @@
      <ul class="nav nav-tabs">
        <li> <%= link_to "Home", root_path %></li>
        <li> <%= link_to "Wikis", wikis_path %></li>
-    <% if user_signed_in? && current_user.standard? %> <li> <%= link_to "Upgrade", new_charge_path %> </li> <% end %>
+    <% if user_signed_in? && current_user.standard? %> <li> <%= link_to "Upgrade", new_charge_path %> </li> 
+    <% elsif user_signed_in? && current_user.premium? %> <li> <%= link_to "Account Management", home_myaccount_path %> </li> 
+     <% end %>
      </ul>
         <%= yield %>
     </div>
