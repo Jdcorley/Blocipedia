@@ -17,6 +17,13 @@ User.create!(
   confirmed_at: Time.now
 )
 User.create!(
+  username: 'Bob',
+  email: 'bob@dabuilder.com', 
+  password: 'helloworld',
+  role: 'standard',
+  confirmed_at: Time.now
+)
+User.create!(
   username: 'Jack',
   email: 'jack@standard.com',
   password: 'helloworld',

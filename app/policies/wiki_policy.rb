@@ -6,20 +6,25 @@ class WikiPolicy < ApplicationPolicy
     @user = user
     @wiki = wiki
   end
+  
+  def show?
+    wiki.private? && user.premium? or user.admin? || @wiki.private == false 
+  end 
 
   def create?
-    user.standard? || user.admin?
+    user.present?
   end
   
   def edit?
-    user.standard? || user.admin?
+    user.present?
   end
   
   def update?
-    user.standard? || user.admin?
+    user.present?
   end
 
   def destroy?
     user.admin? || @user.id == @wiki.user_id
   end
+
 end

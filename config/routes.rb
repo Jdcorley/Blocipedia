@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   get 'home/myaccount'
 
-  post 'home', to: 'home#downgrade_account', as: 'downgrade'
+  post 'downgrade_account', to: 'home#downgrade_account'
 
   get 'home/index'
   
