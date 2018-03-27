@@ -57,3 +57,5 @@ source 'https://rubygems.org'
  gem 'stripe'
 
  gem 'dotenv-rails', :groups => [:development, :test] 
+
+ gem 'redcarpet'
