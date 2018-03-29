@@ -7,7 +7,7 @@ class WikisController < ApplicationController
 
   def show
     @wiki = Wiki.find(params[:id])
-    authorize @wiki 
+    authorize @wiki
   end
 
   def new
@@ -43,8 +43,8 @@ class WikisController < ApplicationController
     else
       flash.now[:alert] = 'There was an error saving the post. Please try again.'
       render :edit
+    end
   end
-end
 
   def destroy
     @wiki = Wiki.find(params[:id])

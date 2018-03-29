@@ -1,20 +1,23 @@
 class User < ApplicationRecord
   has_many :wikis, dependent: :destroy
 
-  after_save :check_role
-  after_initialize :set_default_role, :if => :new_record?
-  
-  enum role: [:standard, :premium, :admin]
-
   devise :database_authenticatable, :registerable, :confirmable,
   :recoverable, :rememberable, :trackable, :validatable, 
   authentication_keys: [:login]
 
-  attr_accessor :login
+  after_initialize :set_default_role, :if => :new_record?
+
+  enum role: [:standard, :premium, :admin]
 
   def set_default_role
     self.role ||= :standard
   end 
+
+  after_save :check_role 
+
+  attr_accessor :login
+
+  include ActiveModel::Dirty 
 
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
@@ -24,7 +27,7 @@ class User < ApplicationRecord
         where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
       elsif conditions[:username].nil?
         where(conditions).first
-      else
+      elseproduct
         where(username: conditions[:username]).first
    end
  end
@@ -32,10 +35,9 @@ class User < ApplicationRecord
 private 
 
   def check_role 
-    wikis = self.wikis 
-    if self.standard?
-      wikis.update_all private: false 
-      puts wikis 
-    end 
-  end 
-end
+   if self.role_changed?(from:'premium', to: 'standard')
+      wikis = self.wikis 
+      wikis.update_all private: false
+   end 
+ end 
+end 
