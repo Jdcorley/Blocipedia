@@ -12,12 +12,17 @@
 
 <%= form_group_tag(wiki.errors[:title]) do %>
   <%= f.label :title %>
-  <%= f.text_field :title, class: 'form-control', placeholder: 'Enter wiki title' %>
+  <%= f.text_field :title, class: 'form-control', 
+  placeholder: 'Enter wiki title' %>
 <% end %>
 
 <%= form_group_tag(wiki.errors[:body]) do %>
   <%= f.label :body %>
-  <%= f.text_area :body, rows: 8, class: 'form-control', placeholder: 'Enter wiki body' %>
+  <%= f.text_area :body, rows: 8, class: 'form-control', 
+  placeholder: 'Enter wiki body' %>
+  <% if current_user.standard? %>
+  <%= f.submit "Save", class: 'btn-btn-success' %>
+<% end %>
 <% end %>
 
 <% if current_user.admin? || current_user.premium? %>
@@ -25,10 +30,11 @@
     <%= f.label :private, class: 'checkbox' do %>
       <%= f.check_box :private %> Private wiki
     <% end %>
+    <%= f.submit "Save", class: 'btn-btn-success' %>
   </div>
 <% end %>
 
-<div class="form-group">
-  <%= f.submit "Save", class: 'btn-btn-success' %>
-</div>
+<% if wiki.private == true && current_user == wiki.user %>
+<%= link_to "Edit Collaborators", wiki_collaborators_path(@wiki, @collaborator) %>
+<% end %>
 <% end %>

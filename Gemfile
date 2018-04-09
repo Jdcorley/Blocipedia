@@ -42,6 +42,9 @@ source 'https://rubygems.org'
  
  group :development do
    gem 'listen', '~> 3.0.5'
+   gem 'rails-erd'
+   gem 'htmlbeautifier'
+   gem 'rubocop', '~> 0.54.0', require: false
  end
 
  gem 'figaro', '1.0'

@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-  has_many :wikis, dependent: :destroy
+  has_many :collaborators
+  has_many :wikis, through: :collaborators, dependent: :destroy
 
   after_save :check_role
   after_initialize :set_default_role, :if => :new_record?
@@ -14,6 +15,14 @@ class User < ApplicationRecord
 
   def set_default_role
     self.role ||= :standard
+  end 
+
+  def collaborators 
+    Collaborator.where(user_id: id)
+  end 
+
+  def wikis 
+    Wiki.where( id: collaborators.pluck(:wiki_id) )
   end 
 
   def self.find_first_by_auth_conditions(warden_conditions)
