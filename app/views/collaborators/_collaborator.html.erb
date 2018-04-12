@@ -1,7 +1,10 @@
 <div class="media">
    <div class="media-body">
-     <ul class="media-heading">
-       <%= @collaborator %>
-     </ul>
+   <h1>Current Collaborators</h1>
+     <% collaborators.each do |collaborator|%>
+      <ul class="media-heading">
+        <li><%= collaborator.user.email %></li>
+      </ul>
+     <% end %>
   </div>
 </div>

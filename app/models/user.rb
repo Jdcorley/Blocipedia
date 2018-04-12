@@ -17,14 +17,6 @@ class User < ApplicationRecord
     self.role ||= :standard
   end 
 
-  def collaborators 
-    Collaborator.where(user_id: id)
-  end 
-
-  def wikis 
-    Wiki.where( id: collaborators.pluck(:wiki_id) )
-  end 
-
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
     validates :username, presence: :true, uniqueness: { case_sensitive: false }

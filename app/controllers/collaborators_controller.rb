@@ -1,33 +1,24 @@
 class CollaboratorsController < ApplicationController
   before_action :authenticate_user!
 
-  def index
-   
-  end
-
-  def show
-    @collaborators = Collaborator.find(params[:email])
-  end
-  
-  def new 
+  def index 
     @wiki = Wiki.find(params[:wiki_id])
-    @collaborator = Collaborator.new
+    @collaborators = @wiki.collaborators 
+  end 
+
+  def new 
+    @collaborator = Collaborator.new 
   end 
 
   def create 
     @wiki = Wiki.find(params[:wiki_id])
-    @collaborator = @wiki.collaborators.build(collaborator_params)
-    @collaborator.user = current_user
-  end
-
-  def destroy
-    @collaborator = Collaborator.find(params[:id])
-    @collaborator.destroy
+    @user = User.find_by_email(params[:collaborator][:user])
+    @collaborator = @user.collaborators.build
+    @collaborator.wiki = @wiki 
+    if @collaborator.save
+      redirect_to [@wiki]
+    else 
+      render :index 
+    end 
   end 
-
-  private
-
-  def collaborator_params
-    params.require(:collaborator).permit(:email, :wiki_id)
-  end
-end
+end 
