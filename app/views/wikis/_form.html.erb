@@ -20,12 +20,12 @@
   <%= f.label :body %>
   <%= f.text_area :body, rows: 8, class: 'form-control', 
   placeholder: 'Enter wiki body' %>
-  <% if current_user.standard? %>
+  <% if current_user.standard? || current_user.premium? && current_user != wiki.user %>
   <%= f.submit "Save", class: 'btn-btn-success' %>
 <% end %>
 <% end %>
 
-<% if current_user.admin? || current_user.premium? %>
+<% if current_user.admin? || current_user.premium? && current_user == wiki.user  %>
   <div class="form-group">
     <%= f.label :private, class: 'checkbox' do %>
       <%= f.check_box :private %> Private wiki
