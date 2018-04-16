@@ -1,0 +1,5 @@
+
+<%= form_for [@wiki, Collaborator.create], url: wiki_collaborators_path do |f| %>
+  <%= f.text_field :user, class: 'form-control', placehold: 'Add a collaborator' %>
+  <%= f.submit 'save', class: 'btn-btn-success' %>
+<% end %>

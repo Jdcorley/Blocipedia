@@ -1,0 +1,7 @@
+<h1>Wikis</h1>
+<div class="row">
+  <div class="col-md-8">
+  <% @collaborators.each do |collaborator| %>
+  <%= render partial: 'collaborator', locals: { collaborators: collaborator }  %>
+  <% end %>
+</div>

@@ -23,6 +23,7 @@ User.create!(
   role: 'standard',
   confirmed_at: Time.now
 )
+
 User.create!(
   username: 'Jack',
   email: 'jack@standard.com',
@@ -40,7 +41,9 @@ users = User.all
     body: Faker::Vehicle.unique.vin
   )
 end
+
 wikis = Wiki.all
+
 
 puts "#{User.count} users created."
 puts "#{Wiki.count} wikis created."
