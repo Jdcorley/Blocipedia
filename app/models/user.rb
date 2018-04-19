@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :collaborators
-  has_many :wikis, through: :collaborators, dependent: :destroy
+  has_many :collaborated_wikis, through: :collaborators, source: :wiki, dependent: :destroy
+  has_many :wikis
 
   after_save :check_role
   after_initialize :set_default_role, :if => :new_record?
