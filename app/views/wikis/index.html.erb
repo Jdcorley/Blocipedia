@@ -3,9 +3,7 @@
   <div class="col-md-8">
   
   <% @wikis.each do |wiki| %>
-  <% if policy(wiki).show? %> 
   <%= render partial: 'wiki', locals: { wiki: wiki }  %>
-  <% end %>
   <% end %>
 </div>
 <div class="col-md-4">
