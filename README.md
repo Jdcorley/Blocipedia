@@ -1,24 +1,9 @@
-# README
+# Blocipedia- A wiki replica application with a premium subscription service.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Blocipedia is a project I worked on during my Bloc Software Developer Bootcamp.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Some of the technologies used:
+    - Stripe API for premium account subscription payment. 
+    - Pundit policy gem to implement multi-level user authorization.
+    - Devise gem for user authentication. 
+    - Emails were sent using SendGrid.
